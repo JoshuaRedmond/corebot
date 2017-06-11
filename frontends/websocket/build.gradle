@@ -5,22 +5,16 @@ buildscript {
 }
 
 apply plugin: 'kotlin'
-apply plugin: 'application'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
 
-    compile project(':bots:bots-common')
-    compile project(':backends:deployment:backends-deployment-jenkins')
-    compile project(':backends:deployment:backends-deployment-rundeck')
-    compile project(':stores:stores-redis')
-    compile project(':frontends:frontends-slack')
-}
+    compile project(':frontends:frontends-common')
 
-mainClassName = 'com.gatehill.corebot.MainKt'
+    compile "org.glassfish.tyrus:tyrus-server:1.2.1"
+    compile "org.glassfish.tyrus:tyrus-container-grizzly:1.2.1"
 
-task createStartScripts(type: CreateStartScripts) {
-    applicationName = 'corebot'
+    compile project(':core:core-engine')
 }
 
 publishing {

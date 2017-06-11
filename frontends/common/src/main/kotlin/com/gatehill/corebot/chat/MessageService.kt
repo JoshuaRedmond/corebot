@@ -31,11 +31,11 @@ class MessageService @Inject constructor(private val sessionService: SessionServ
     /**
      * Allow subclasses to hook into Slack events.
      */
-    fun handleMessage(commandOnly: List<String>, trigger: TriggerContext) {
+    fun handleMessage(trigger: TriggerContext, commandOnly: List<String>) {
         // indicate busy...
         sessionService.addReaction(trigger, "hourglass_flowing_sand")
 
-        parseMessage(commandOnly)?.let { parsed ->
+        parseMessage(trigger, commandOnly)?.let { parsed ->
             logger.info("Handling command '$commandOnly' from ${trigger.username}")
             parsed.groupStartMessage?.let { sessionService.sendMessage(trigger, it) }
             parsed.actions.forEach { action -> handleAction(trigger, action, parsed) }
@@ -50,13 +50,13 @@ class MessageService @Inject constructor(private val sessionService: SessionServ
     /**
      * Determine the Action to perform based on the provided command.
      */
-    private fun parseMessage(commandOnly: List<String>): ActionWrapper? {
+    private fun parseMessage(trigger: TriggerContext, commandOnly: List<String>): ActionWrapper? {
         try {
             templateService.findSatisfiedTemplates(commandOnly).let { satisfied ->
                 if (satisfied.size == 1) {
                     return with(satisfied.first()) {
-                        ActionWrapper(buildActions(),
-                                if (actionMessageMode == ActionMessageMode.GROUP) buildStartMessage() else null,
+                        ActionWrapper(buildActions(trigger),
+                                if (actionMessageMode == ActionMessageMode.GROUP) buildStartMessage(trigger) else null,
                                 if (actionMessageMode == ActionMessageMode.GROUP) buildCompleteMessage() else null)
                     }
                 } else {

@@ -11,10 +11,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
 
     compile project(':bots:bots-common')
-    compile project(':backends:deployment:backends-deployment-jenkins')
-    compile project(':backends:deployment:backends-deployment-rundeck')
+    compile project(':backends:backends-items')
     compile project(':stores:stores-redis')
-    compile project(':frontends:frontends-slack')
+    compile project(':frontends:frontends-websocket')
 }
 
 mainClassName = 'com.gatehill.corebot.MainKt'
