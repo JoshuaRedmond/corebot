@@ -3,10 +3,26 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [0.9.2] - 2017-08-26
+### Changed
+- Don't post channel join message on reconnection.
+
+## [0.9.1] - 2017-07-20
+### Fixed
+- Adds a work-around for a message de-duplication bug in the Slack library.
+
+## [0.9.0] - 2017-07-08
 ### Added
 - Adds a bot to allow simple borrow/return of items.
 - Adds a new 'items' backend.
+- Makes join message conditional.
+- Adds MySQL store.
+- Now supports multiple templates.
+
+### Changed
+- Internal structural improvements to support multiple back-end or front-end implementations.
+- Improved specification coverage.
+- Externalised templates to allow messages to be changed.
 
 ## [0.8.1] - 2017-06-11
 ### Added

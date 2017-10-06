@@ -1,4 +1,4 @@
-# Corebot: A Slack bot for Rundeck and Jenkins <img alt="Build status" src="https://circleci.com/gh/outofcoffee/corebot.svg?style=shield" >
+# Corebot: A Slack bot for Rundeck and Jenkins [![CircleCI](https://circleci.com/gh/outofcoffee/corebot.svg?style=svg)](https://circleci.com/gh/outofcoffee/corebot)
 
 Trigger your [Rundeck](http://rundeck.org) or [Jenkins](https://jenkins.io) jobs from [Slack](https://slack.com).
 
@@ -42,9 +42,13 @@ _Example:_
 * Set environment variables
 * Run!
 
-## Quick start
+## Getting started
 
-The quickest way to get up and running is to use the Docker image:
+The quickest way to get up and running is to use our free cloud-hosted version at [https://www.remotebot.io/bot](https://www.remotebot.io/bot)
+
+## Docker
+
+If you'd like to run Corebot yourself as a Docker container, you can do the following:
 
     docker run -d \
             --env SLACK_AUTH_TOKEN="CHANGEME" \
@@ -462,7 +466,9 @@ For recent changes see the [Changelog](CHANGELOG.md), or view the [Roadmap](docs
 
 ## Contributing
 
-Pull requests are welcome.
+* Pull requests are welcome.
+* PRs should target the `develop` branch.
+* Please run `ktlint` against the code first ;-)
 
 ## Author
 
